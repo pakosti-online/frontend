@@ -1,0 +1,9 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100%;
+}
