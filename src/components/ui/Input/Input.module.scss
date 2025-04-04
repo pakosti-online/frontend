@@ -1,0 +1,58 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.input {
+    @include text-size(text-sm);
+    @include spacing(gap, 2);
+    @include spacing(padding-left, 2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 0.8rem;
+    transition: all 0.3s ease;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: white;
+        box-shadow: none;
+    }
+
+    & svg {
+        pointer-events: none;
+        flex-shrink: 0;
+    }
+
+    &Default {
+        background-color: $card;
+        color: $card-foreground;
+        @include spacing(height, 10);
+        @include spacing(padding, 2, 4);
+    }
+
+    &Ghost {
+        background-color: transparent;
+        border: 1px solid $border;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: 0.875rem;
+    }
+}
+
+.inputSize {
+    &Default {
+        @include spacing(height, 12);
+        @include spacing(padding, 3);
+    }
+
+    &CleanHorizontal {
+        @include spacing(height, 10);
+        @include spacing(padding, 2, 0);
+    }
+}

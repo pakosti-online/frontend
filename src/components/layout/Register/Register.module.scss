@@ -1,0 +1,41 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.registerCard {
+    width: 30%;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    color: black;
+
+    .registerCardContent {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .cardTitle {
+            color: black;
+            display: flex;
+            width: 100%;
+            @include text-size(text-3xl);
+            justify-content: center;
+        }
+
+        .registerForm {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            @include spacing(margin-top, 10);
+            @include spacing(gap, 5);
+        }
+
+        .submitButton {
+            width: 100%;
+            @include spacing(margin-top, 2);
+            @include rounded(xl);
+            @include text-size(text-xl);
+            @include spacing(height, 14);
+        }
+    }
+}

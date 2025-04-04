@@ -1,0 +1,76 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+@use "@/styles/animations" as *;
+
+.dialogOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background-color: var(--background);
+
+    &[data-state="open"] {
+        animation: dialogFadeIn 0.3s forwards;
+    }
+
+    &[data-state="closed"] {
+        animation: dialogFadeOut 0.3s forwards;
+    }
+}
+
+.dialogContent {
+    @include spacing(padding, 6);
+    @include spacing(border-radius, 3);
+    color: $card-foreground;
+    background-color: $card;
+    position: fixed;
+    left: 50%;
+    bottom: -100%;
+    transform: translateX(-50%) translateY(100%);
+    z-index: 50;
+    display: grid;
+    width: 100%;
+    max-width: 32rem;
+    border-radius: 1.5rem;
+    animation: slideUp 0.2s forwards;
+
+    &[data-state="open"] {
+        animation: slideUp 0.2s forwards;
+    }
+
+    &[data-state="closed"] {
+        animation: slideDown 0.5s forwards;
+    }
+}
+
+.dialogHeader {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    @media (min-width: 640px) {
+        text-align: left;
+    }
+}
+
+.dialogFooter {
+    display: flex;
+    flex-direction: column-reverse;
+
+    @media (min-width: 640px) {
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
+}
+
+.dialogTitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+.dialogDescription {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}

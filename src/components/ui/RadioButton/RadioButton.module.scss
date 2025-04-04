@@ -1,0 +1,44 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.radioGroup {
+    display: grid;
+    @include spacing(gap, 2);
+}
+
+.radioGroupItem {
+    aspect-ratio: 1 / 1;
+    @include spacing(height, 4);
+    @include spacing(width, 4);
+    border-radius: 50%;
+    border: 1px solid $primary;
+    color: $primary;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:focus-visible {
+        box-shadow: 0 0 0 1px $ring;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    .radioGroupItemIndicator {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .indicatorCircle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include spacing(height, 3.5);
+            @include spacing(width, 3.5);
+            fill: $primary;
+        }
+    }
+}

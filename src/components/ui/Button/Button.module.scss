@@ -1,0 +1,171 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.button {
+    font-family: "Roboto", "Roboto Fallback";
+    font-style: normal;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    @include spacing(border-radius, 2);
+    @include spacing(gap, 2);
+    @include text-size(text-sm);
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &:active {
+        filter: brightness(1.25);
+    }
+
+    svg {
+        pointer-events: none;
+        flex-shrink: 0;
+    }
+
+    &Transparent {
+        background-color: transparent;
+    }
+
+    &Card {
+        @include spacing(border-radius, 3);
+        color: $muted-foreground;
+        background-color: $muted;
+    }
+
+    &Default {
+        background-color: $primary;
+        color: $primary-foreground;
+    }
+
+    &Header {
+        background-color: $muted;
+        color: var(--color-text);
+        font-weight: 500;
+        @include text-size(text-base);
+
+        &:hover {
+            background-color: $muted-hover;
+        }
+    }
+
+    &HeaderLight {
+        background-color: transparent;
+
+        &:hover {
+            background-color: $muted-hover;
+            color: $ghost-foreground;
+        }
+    }
+
+    &Ghost {
+        background-color: transparent;
+
+        &:hover {
+            background-color: $ghost;
+            color: $ghost-foreground;
+        }
+    }
+
+    &Destructive {
+        color: $destructive-foreground;
+
+        &:hover {
+            background-color: $destructive;
+        }
+    }
+
+    &DestructiveGrey {
+        color: red;
+        border: 1px solid $border;
+
+        &:hover {
+            background-color: $destructive;
+        }
+    }
+
+    &InvestGreen {
+        background-color: $invest-green;
+        color: white;
+        &:hover {
+            background-color: rgba($invest-green, 0.7);
+        }
+    }
+
+    &Steam {
+        @include rounded(xl);
+        border: 1px solid $foreground;
+        background: linear-gradient(to bottom, #001118, #003850);
+
+        &:hover {
+            filter: brightness(1.1);
+        }
+
+        &:active {
+            filter: brightness(1.25);
+        }
+    }
+
+    &GameAction {
+        @include rounded(xl);
+        @include text-size(text-base);
+        background-color: $game-action;
+
+        &:hover {
+            background-color: $game-action-hover;
+        }
+    }
+}
+
+.buttonSize {
+    &Default {
+        @include spacing(height, 10);
+        @include spacing(padding, 2, 3);
+    }
+
+    &Icon {
+        @include spacing(height, 10);
+        @include spacing(width, 10);
+    }
+
+    &Header {
+        @include spacing(height, 14);
+        @include spacing(padding, 2, 0);
+    }
+
+    &Steam {
+        @include spacing(height, 12);
+        @include spacing(padding, 3, 9);
+    }
+
+    &SteamLarge {
+        @include spacing(height, 18);
+        @include spacing(padding, 4, 10);
+    }
+
+    &Reset {
+        @include spacing(height, auto);
+        @include spacing(padding, 0);
+    }
+
+    &Modal {
+        @include spacing(height, 8);
+        @include spacing(padding, 2);
+    }
+
+    &Action {
+        @include spacing(height, 12);
+        @include spacing(padding, 2);
+    }
+
+    &Game {
+        @include spacing(height, 12);
+        @include spacing(padding, 2, 5);
+    }
+}

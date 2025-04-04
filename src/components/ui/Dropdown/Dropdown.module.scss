@@ -1,0 +1,198 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+@use "@/styles/animations" as *;
+
+.dropdownElemAnimations {
+    &[data-side="bottom"] {
+        animation: slideInFromTop 150ms ease-in-out;
+    }
+
+    &[data-side="left"] {
+        animation: slideInFromRight 150ms ease-in-out;
+    }
+
+    &[data-side="right"] {
+        animation: slideInFromLeft 150ms ease-in-out;
+    }
+
+    &[data-side="top"] {
+        animation: slideInFromBottom 150ms ease-in-out;
+    }
+}
+
+.dropdownContentBase {
+    z-index: 50;
+    min-width: 8rem;
+    overflow: hidden;
+    border-radius: $radius;
+    border: 1px solid $border;
+    background-color: var(--popover);
+    padding: 0.25rem;
+    color: var(--popover-foreground);
+    box-shadow: var(--shadow-lg);
+
+    &[data-state="open"] {
+        animation:
+            fadeIn 150ms ease-in-out,
+            zoomIn 150ms ease-in-out;
+    }
+
+    &[data-state="closed"] {
+        animation:
+            fadeOut 150ms ease-in-out,
+            zoomOut 150ms ease-in-out;
+    }
+}
+
+.dropdownMenuItemBase {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.875rem;
+    outline: none;
+    transition:
+        color 150ms ease-in-out,
+        background-color 150ms ease-in-out;
+}
+
+.dropdownMenuSubTrigger {
+    display: flex;
+    cursor: default;
+    user-select: none;
+    align-items: center;
+    outline: none;
+    @include spacing(gap, 2);
+    @include spacing(border-radius, 1);
+    @include spacing(padding, 1.5);
+    @include text-size(text-sm);
+
+    &:focus {
+        background-color: var(--accent);
+    }
+
+    &[data-state="open"] {
+        background-color: var(--accent);
+    }
+
+    svg {
+        pointer-events: none;
+        flex-shrink: 0;
+        @include spacing(width, 4);
+        @include spacing(height, 4);
+    }
+
+    @extend .dropdownElemAnimations;
+}
+
+.dropdownMenuContent {
+    @extend .dropdownContentBase;
+    @extend .dropdownElemAnimations;
+}
+
+.dropdownMenuSubContent {
+    @extend .dropdownContentBase;
+}
+
+.dropdownMenuItem {
+    @extend .dropdownMenuItemBase;
+    gap: 0.5rem;
+
+    &:focus {
+        background-color: var(--accent);
+        color: var(--accent-foreground);
+    }
+
+    &[data-disabled] {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    & svg {
+        pointer-events: none;
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+    }
+}
+
+.dropdownMenuCheckboxItem {
+    @extend .dropdownMenuItemBase;
+
+    &:focus {
+        background-color: var(--accent);
+        color: var(--accent-foreground);
+    }
+
+    &[data-disabled] {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    .checkboxIndicator {
+        position: absolute;
+        left: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 0.875rem;
+        width: 0.875rem;
+    }
+
+    .checkIcon {
+        height: 1rem;
+        width: 1rem;
+    }
+}
+
+.dropdownMenuRadioItem {
+    @extend .dropdownMenuItemBase;
+
+    &:focus {
+        background-color: var(--accent);
+        color: var(--accent-foreground);
+    }
+
+    &[data-disabled] {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    .radioIndicator {
+        position: absolute;
+        left: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 0.875rem;
+        width: 0.875rem;
+    }
+
+    .radioCircle {
+        height: 0.5rem;
+        width: 0.5rem;
+        fill: currentColor;
+    }
+}
+
+.dropdownMenuLabel {
+    @include spacing(padding, 2, 1.5);
+    @include text-size(text-sm);
+    @include weight(semibold);
+}
+
+.dropdownMenuSeparator {
+    @include spacing(margin, -0.25rem, 0.25rem);
+    height: 1px;
+    background-color: var(--muted);
+}
+
+.dropdownMenuShortcut {
+    margin-left: auto;
+    opacity: 0.6;
+    @include text-size(text-xs);
+    @include letter-spacing(widest);
+}

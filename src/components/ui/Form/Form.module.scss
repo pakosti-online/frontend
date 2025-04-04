@@ -1,0 +1,29 @@
+@use "@/styles/variables";
+
+.formItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.formLabel {
+    font-weight: 500;
+
+    &.error {
+        color: var(--destructive);
+    }
+}
+
+.formControl {
+    width: 100%;
+}
+
+.formDescription {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.formMessage {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--destructive);
+}

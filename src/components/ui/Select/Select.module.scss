@@ -1,0 +1,179 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+@use "@/styles/animations" as *;
+
+.selectTrigger {
+    display: flex;
+    @include spacing(height, 9);
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    @include rounded(md);
+    border: 1px solid var(--input);
+    background-color: transparent;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    @include spacing(padding, 2, 3);
+    @include text-size(text-sm);
+
+    &:focus {
+        ring: 1px solid var(--ring);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    & > span {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    &[data-placeholder] {
+        color: var(--muted-foreground);
+    }
+
+    .selectTriggerIcon {
+        @include spacing(height, 4);
+        @include spacing(width, 4);
+        opacity: 0.5;
+    }
+}
+
+.selectScrollUpButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    @include spacing(padding, 1, 0);
+}
+
+.selectScrollUpButtonIcon {
+    @include spacing(width, 4);
+    @include spacing(height, 4);
+}
+
+.selectScrollDownButton {
+    @extend .selectScrollUpButton;
+}
+
+.selectScrollDownButtonIcon {
+    @extend .selectScrollUpButtonIcon;
+}
+
+.selectContent {
+    position: relative;
+    z-index: 50;
+    max-height: 96 * $spacing-unit;
+    min-width: 8rem;
+    overflow: hidden;
+    @include rounded(md);
+    border: 1px solid var(--border);
+    background-color: var(--popover);
+    color: var(--text-popover-foreground);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    &[data-state="open"] {
+        animation:
+            fadeIn 0.2s ease-out,
+            zoomIn 0.2s ease-out;
+    }
+
+    &[data-state="closed"] {
+        animation:
+            fadeOut 0.2s ease-in,
+            zoomOut 0.2s ease-in;
+    }
+
+    &[data-side="bottom"] {
+        animation: slideInFromTop 0.2s ease-out;
+    }
+
+    &[data-side="left"] {
+        animation: slideInFromRight 0.2s ease-out;
+    }
+
+    &[data-side="right"] {
+        animation: slideInFromLeft 0.2s ease-out;
+    }
+
+    &[data-side="top"] {
+        animation: slideInFromBottom 0.2s ease-out;
+    }
+
+    &.popper {
+        &[data-side="bottom"] {
+            transform: translateY(0.25rem);
+        }
+        &[data-side="left"] {
+            transform: translateX(-0.25rem);
+        }
+        &[data-side="right"] {
+            transform: translateX(0.25rem);
+        }
+        &[data-side="top"] {
+            transform: translateY(-0.25rem);
+        }
+    }
+}
+
+.selectContentViewport {
+    padding: 0.25rem;
+
+    &.popper {
+        height: var(--radix-select-trigger-height);
+        width: 100%;
+        min-width: var(--radix-select-trigger-width);
+    }
+}
+
+.selectLabel {
+    @include spacing(padding, 1.5, 2);
+    @include text-size(text-sm);
+    @include weight(semibold);
+}
+
+.selectItem {
+    position: relative;
+    display: flex;
+    width: 100%;
+    cursor: default;
+    user-select: none;
+    align-items: center;
+    @include rounded(sm);
+    @include spacing(padding, 1.5, 8, 1.5, 2);
+    @include text-size(text-sm);
+    outline: none;
+
+    &:focus {
+        background-color: var(--accent);
+        color: var(--accent-foreground);
+    }
+
+    &[data-disabled] {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    .selectItemIndicator {
+        @include spacing(width, 3.5);
+        @include spacing(height, 3.5);
+        position: absolute;
+        @include spacing(right, 2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .selectItemIndicatorIcon {
+            @extend .selectScrollUpButtonIcon;
+        }
+    }
+}
+
+.selectSeparator {
+    @include spacing(margin, 1, -1);
+    background-color: var(--muted);
+    height: 1px;
+}
