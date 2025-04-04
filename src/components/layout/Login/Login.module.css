@@ -1,15 +1,8 @@
-@use "./media/mobile";
-@use "./media/tablet";
-@use "./media/desktop";
-
-@use "@/styles/variables/" as *;
-
 .card-first {
     display: block;
 }
 
 .card {
-    @extend .card-first;
     --tblr-card-spacer-y: 1.25rem;
     --tblr-card-spacer-x: 1.25rem;
     --tblr-card-title-spacer-y: 1.25rem;
