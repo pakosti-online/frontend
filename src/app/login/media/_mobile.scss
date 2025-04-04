@@ -1,0 +1,8 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+@include media(desktop, max) {
+    .authActionBlock.mobile {
+        width: 90%;
+    }
+}

@@ -1,0 +1,8 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+@include media(tablet, min) {
+    .loginCard.tablet {
+        width: 30%;
+    }
+}

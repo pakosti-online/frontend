@@ -1,16 +1,25 @@
 "use client";
 
 import React from "react";
+import clsx from "clsx";
 import { Button } from "@/components/ui/Button/Button";
 import { Card, CardContent } from "@/components/ui/Card/Card";
 import { useRegister } from "@/common/hooks/auth/useRegister";
+import { useScreenSize } from "@/common/contexts/ScreenSizeContext";
 import AuthBlock from "@/components/shared/AuthBlock/AuthBlock";
 import styles from "./Register.module.scss";
 
 const Register = () => {
   const { registerFields, handleInputChange, handleSubmit } = useRegister();
+  const { isMobile, fromTablet } = useScreenSize();
+
+  const registerCardStyles = clsx(styles.registerCard, {
+    [styles.mobile]: isMobile,
+    [styles.tablet]: fromTablet,
+  });
+
   return (
-    <Card className={styles.registerCard}>
+    <Card className={registerCardStyles}>
       <CardContent size="default" className={styles.registerCardContent}>
         <h1 className={styles.cardTitle}>Регистрация</h1>
         <form action="/app" className={styles.registerForm}>

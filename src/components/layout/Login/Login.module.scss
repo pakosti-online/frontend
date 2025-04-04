@@ -1,11 +1,16 @@
 @use "@/styles/variables" as *;
 @use "@/styles/mixins" as *;
 
+@use "./media/mobile";
+@use "./media/tablet";
+
 .loginCard {
     width: 30%;
+    min-width: 500px;
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     color: black;
+    @include spacing(margin-top, 5);
 
     .loginCardContent {
         width: 100%;

@@ -2,6 +2,8 @@
 
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import clsx from "clsx";
+import { useScreenSize } from "@/common/contexts/ScreenSizeContext";
 import Login from "@/components/layout/Login/Login";
 import styles from "./login.module.scss";
 
@@ -17,10 +19,16 @@ const LoginPage = () => {
     }
   }, [isLogged, router]);
 
+  const { isMobile } = useScreenSize();
+
+  const authActionBlockStyles = clsx(styles.authActionBlock, {
+    [styles.mobile]: isMobile,
+  });
+
   return (
     <div className={styles.loginPage}>
       <Login />
-      <div className={styles.authActionBlock}>
+      <div className={authActionBlockStyles}>
         <span>Ещё нет аккаунта?</span>
         &nbsp;
         <a href="/register">Создать аккаунт</a>

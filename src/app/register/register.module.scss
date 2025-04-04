@@ -8,7 +8,7 @@
     justify-content: center;
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100%;
 
     .authActionBlock {
         @include text-size(text-xl);

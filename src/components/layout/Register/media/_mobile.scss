@@ -1,0 +1,9 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+@include media(tablet, max) {
+    .registerCard.mobile {
+        width: 90%;
+        min-width: 1px;
+    }
+}
