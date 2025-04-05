@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "@/components/layout/Header/Header";
+import Header from "@/components/shared/Header/Header";
 import styles from "./app.module.scss";
 import AppPageSheet from "@/components/layout/AppPageSheet/AppPageSheet";
 

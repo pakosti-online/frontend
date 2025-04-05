@@ -4,12 +4,11 @@ import {
   Sheet,
   SheetTrigger,
   SheetContent,
-  SheetTitle,
   SheetClose,
 } from "@/components/ui/Sheet/Sheet";
 import { IoMdClose } from "react-icons/io";
-import MainBlockCard from "../MainBlockCard/MainBlockCard";
-import CategoryAccordion from "../CategoryAccordion/CategoryAccordion";
+import MainBlockCard from "../../shared/MainBlockCard/MainBlockCard";
+import CategoryAccordion from "./CategoryAccordion/CategoryAccordion";
 import styles from "./AppPageSheet.module.scss";
 
 interface AppPageSheetProps {
@@ -32,10 +31,11 @@ const AppPageSheet: React.FC<AppPageSheetProps> = ({
         side="top"
         className={clsx(styles.appPageSheetContent, contentClassName)}
       >
-        <SheetClose className={styles.appPageSheetCloseButton}>
-          <IoMdClose />
-        </SheetClose>
-        <SheetTitle>Категории</SheetTitle>
+        <div className={styles.appPageActions}>
+          <SheetClose className={styles.appPageSheetCloseButton}>
+            <IoMdClose />
+          </SheetClose>
+        </div>
         <div className={styles.categories}>
           <CategoryAccordion />
         </div>
