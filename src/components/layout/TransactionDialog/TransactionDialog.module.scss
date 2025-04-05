@@ -7,7 +7,7 @@
     box-shadow: 0 4px 6px rgba($invest-green, 0.6);
 
     .dialogTitle {
-        @include text-size(text-2xl);
+        @include text-size(text-xl);
         @include spacing(margin-bottom, 4);
         @include spacing(padding-bottom, 3);
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -28,7 +28,7 @@
             .dialogParamBlock {
                 display: flex;
                 flex-direction: column;
-                @include text-size(text-lg);
+                @include text-size(text-);
 
                 .dialogParamBlockTitle {
                     @include weight(bold);
@@ -38,11 +38,19 @@
 
         .dialogFilters {
             width: 50%;
+
+            .dialogSelectCategoryTrigger {
+                width: 100%;
+            }
         }
     }
 
     .dialogClose {
         @include spacing(padding-top, 5);
         border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+        .dialogCloseButton {
+            padding: 1rem 1.5rem !important;
+        }
     }
 }

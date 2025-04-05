@@ -11,8 +11,8 @@ const Transaction: React.FC<TransactionProps> = ({ name, price }) => {
   return (
     <Card className={styles.transactionCard}>
       <CardContent className={styles.transactionCardContent}>
-        <span className={styles.name}>Название: {name}</span>
-        <span className={styles.price}>Стоимость: {price} руб.</span>
+        <span className={styles.name}>{name}</span>
+        <span className={styles.price}>{price} руб.</span>
       </CardContent>
     </Card>
   );

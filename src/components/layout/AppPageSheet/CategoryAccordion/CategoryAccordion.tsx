@@ -11,6 +11,7 @@ import { getCategoriesList } from "@/common/configs/categoriesList";
 import { getTransactionsList } from "@/common/configs/transactions";
 import Transaction from "../Transaction/Transaction";
 import TransactionDialog from "../TransactionDialog/TransactionDialog";
+import Chart from "@/components/ui/Chart/CategoryDonutChart";
 
 interface CategoryAccordionProps {
   className?: string;
@@ -20,6 +21,16 @@ const CategoryAccordion: React.FC<CategoryAccordionProps> = ({ className }) => {
   const categoriesList = getCategoriesList();
   const transactionList = getTransactionsList();
 
+  const calculateFullCategorySpending = (category: string) => {
+    let spending = 0;
+
+    transactionList[category].map((transaction) => {
+      spending += transaction.price;
+    });
+
+    return spending;
+  };
+
   return (
     <Accordion
       type="single"
@@ -27,6 +38,7 @@ const CategoryAccordion: React.FC<CategoryAccordionProps> = ({ className }) => {
       className={clsx(styles.categoryAccordion, className)}
     >
       <div className={styles.accordionContainer}>
+        <Chart />
         <h1 className={styles.categoryTitle}>Категории</h1>
         <div className={styles.categoriesList}>
           {categoriesList.map((category, index) => (

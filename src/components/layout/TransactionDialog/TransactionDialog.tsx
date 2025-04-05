@@ -60,14 +60,18 @@ const TransactionDialog: React.FC<TransactionDialogProps> = ({
             </div>
           </div>
           <div className={styles.dialogFilters}>
-            <h3></h3>
+            <h3>Категория</h3>
             <CategorySelect>
-              <SelectValue></SelectValue>
+              <SelectValue className={styles.dialogSelectCategor}>
+                Выберите категорию
+              </SelectValue>
             </CategorySelect>
           </div>
         </div>
         <DialogClose className={styles.dialogClose}>
-          <Button type="submit">Сохранить изменения</Button>
+          <Button className={styles.dialogCloseButton} type="submit">
+            Сохранить изменения
+          </Button>
         </DialogClose>
       </DialogContent>
     </Dialog>
