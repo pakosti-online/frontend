@@ -60,9 +60,11 @@ const TransactionDialog: React.FC<TransactionDialogProps> = ({
             </div>
           </div>
           <div className={styles.dialogFilters}>
-            <h3></h3>
+            <h3>Категория</h3>
             <CategorySelect>
-              <SelectValue></SelectValue>
+              <SelectValue className={styles.dialogSelectCategor}>
+                Выберите категорию
+              </SelectValue>
             </CategorySelect>
           </div>
         </div>
