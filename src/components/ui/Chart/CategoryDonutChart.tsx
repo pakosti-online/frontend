@@ -14,6 +14,7 @@ import {
 import { getCategoriesList } from "@/common/configs/categoriesList";
 import { getTransactionsList } from "@/common/configs/transactions";
 
+// Интерфейсы для данных
 interface Transaction {
   name: string;
   price: number;
@@ -26,10 +27,34 @@ interface CategoryTotal {
   fill: string;
 }
 
+// Кастомный компонент для Tooltip
+const CustomTooltip = ({ active, payload }: any) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload; // Получаем данные текущего сегмента
+    return (
+      <div className={styles.customTooltip}>
+        <div className={styles.tooltipRow}>
+          <div
+            className={styles.colorDot}
+            style={{ backgroundColor: data.fill }}
+          ></div>
+          <span className={styles.categoryName}>{data.category}</span>
+        </div>
+        <div className={styles.tooltipTotal}>
+          Total: {data.total.toLocaleString()}
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+};
+
 const CategoryDonutChart = () => {
   const categories = getCategoriesList();
   const transactions = getTransactionsList();
 
+  // Рассчитываем сумму для каждой категории
   const categoryTotals = React.useMemo((): CategoryTotal[] => {
     return categories.map((category: string) => {
       const total = transactions[category]?.reduce(
@@ -69,10 +94,10 @@ const CategoryDonutChart = () => {
             nameKey="category"
             cx="50%"
             cy="50%"
-            innerRadius={70}
+            innerRadius={60}
             outerRadius={100}
             fill="#8884d8"
-            label={false} 
+            label={false} // Отключаем label, чтобы не перекрывал текст
           >
             {/* Центральный текст */}
             <Label
@@ -94,7 +119,7 @@ const CategoryDonutChart = () => {
                       </tspan>
                       <tspan
                         x={viewBox.cx}
-                        y={(viewBox.cy || 0) + 24}
+                        y={(viewBox.cy || 0) + 20} // Уменьшаем смещение
                         className={styles.totalAmount}
                       >
                         Total Amount
@@ -106,7 +131,8 @@ const CategoryDonutChart = () => {
               }}
             />
           </Pie>
-          <Tooltip />
+          {/* Tooltip */}
+          <Tooltip content={<CustomTooltip />} />
         </PieChart>
       </CardContent>
 
