@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/Accordion/Accordion";
 import { getCategoriesList } from "@/common/configs/categoriesList";
 import { getTransactionsList } from "@/common/configs/transactions";
-import Transaction from "../Transaction/Transaction";
-import TransactionDialog from "../TransactionDialog/TransactionDialog";
-import Chart from "@/components/ui/Chart/CategoryDonutChart";
+import CategoryDonutChart from "@/components/ui/CategoryDonutChart/CategoryDonutChart";
+import TransactionDialog from "../../TransactionDialog/TransactionDialog";
+import Transaction from "../../Transaction/Transaction";
 
 interface CategoryAccordionProps {
   className?: string;
@@ -38,7 +38,8 @@ const CategoryAccordion: React.FC<CategoryAccordionProps> = ({ className }) => {
       className={clsx(styles.categoryAccordion, className)}
     >
       <div className={styles.accordionContainer}>
-        <Chart />
+        <h1 className={styles.categoryTitle}>Сводка транзакций</h1>
+        <CategoryDonutChart />
         <h1 className={styles.categoryTitle}>Категории</h1>
         <div className={styles.categoriesList}>
           {categoriesList.map((category, index) => (
@@ -48,7 +49,8 @@ const CategoryAccordion: React.FC<CategoryAccordionProps> = ({ className }) => {
               className={styles.categoryItem}
             >
               <AccordionTrigger className={styles.categoryItemTrigger}>
-                {category}
+                {category}&nbsp;(общая сумма расходов:{" "}
+                {calculateFullCategorySpending(category)} руб.)
               </AccordionTrigger>
               <AccordionContent className={styles.categoryItemContent}>
                 <div className={styles.transactionList}>

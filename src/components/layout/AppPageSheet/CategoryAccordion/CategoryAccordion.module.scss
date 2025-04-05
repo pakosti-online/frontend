@@ -5,12 +5,12 @@
     width: 100%;
     height: 100%;
     display: flex;
+    overflow: scroll;
     flex-direction: column;
     align-items: center;
 
     .accordionContainer {
         width: 50%;
-        @include spacing(margin-top, 5);
         @include spacing(padding, 0, 5);
 
         .accordionTitleBlock {
@@ -19,6 +19,7 @@
         }
 
         .categoryTitle {
+            @include spacing(margin, 5, 0);
             color: black;
         }
 
@@ -26,7 +27,6 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            @include spacing(margin-top, 10);
 
             .categoryItem {
                 .categoryItemTrigger {

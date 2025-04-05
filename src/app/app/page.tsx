@@ -16,7 +16,7 @@ const AppPage = () => {
             <AppPageSheet
               triggerClassName={styles.infoBlockModalTrigger}
               contentClassName={styles.infoBlockModal}
-              blockName="Категории"
+              blockName="Транзакции"
             />
           </div>
           <div className={styles.infoBlock}>
