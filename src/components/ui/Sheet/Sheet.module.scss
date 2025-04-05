@@ -33,7 +33,8 @@
         padding: 6px;
     }
 }
-До .sheetContentTop {
+
+.sheetContentTop {
     @include inset(0);
     bottom: auto;
     width: 100%;
