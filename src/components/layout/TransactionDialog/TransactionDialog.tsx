@@ -67,7 +67,9 @@ const TransactionDialog: React.FC<TransactionDialogProps> = ({
           </div>
         </div>
         <DialogClose className={styles.dialogClose}>
-          <Button type="submit">Сохранить изменения</Button>
+          <Button className={styles.dialogCloseButton} type="submit">
+            Сохранить изменения
+          </Button>
         </DialogClose>
       </DialogContent>
     </Dialog>

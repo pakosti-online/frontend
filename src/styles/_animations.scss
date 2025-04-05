@@ -63,12 +63,10 @@
 
 @keyframes slideInFromTop {
     from {
-        transform: translateY(-2px);
-        opacity: 0;
+        transform: translateY(-100%);
     }
     to {
         transform: translateY(0);
-        opacity: 1;
     }
 }
 
@@ -97,11 +95,9 @@
 @keyframes slideOutToTop {
     from {
         transform: translateY(0);
-        opacity: 1;
     }
     to {
         transform: translateY(-100%);
-        opacity: 0;
     }
 }
 
