@@ -1,32 +1,34 @@
-'use client'
+"use client";
 
-import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import clsx from 'clsx'
-import styles from './Card.module.scss'
+import clsx from "clsx";
+import styles from "./Card.module.scss";
 
 const cardVariants = cva(styles.card, {
   variants: {
     variant: {
       standard: styles.cardStandard,
       modal: styles.cardModal,
+      investGreen: styles.cardInvestGreen,
     },
     size: {
       default: styles.cardSizeDefault,
       dialog: styles.cardSizeDialog,
       filterButton: styles.cardSizeFilterButton,
       game: styles.cardSizeGame,
+      transaction: styles.cardSizeTransaction,
     },
   },
   defaultVariants: {
-    variant: 'standard',
-    size: 'default',
+    variant: "standard",
+    size: "default",
   },
-})
+});
 
 type CardProps = React.HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof cardVariants>
+  VariantProps<typeof cardVariants>;
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant, size, ...props }, ref) => (
@@ -35,25 +37,25 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       className={clsx(cardVariants({ variant, size }), className)}
       {...props}
     />
-  ),
-)
-Card.displayName = 'Card'
+  )
+);
+Card.displayName = "Card";
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div ref={ref} className={clsx(styles.cardHeader, className)} {...props} />
-))
-CardHeader.displayName = 'CardHeader'
+));
+CardHeader.displayName = "CardHeader";
 
 const CardTitle = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div ref={ref} className={clsx(styles.cardTitle, className)} {...props} />
-))
-CardTitle.displayName = 'CardTitle'
+));
+CardTitle.displayName = "CardTitle";
 
 const CardDescription = React.forwardRef<
   HTMLDivElement,
@@ -64,8 +66,8 @@ const CardDescription = React.forwardRef<
     className={clsx(styles.cardDescription, className)}
     {...props}
   />
-))
-CardDescription.displayName = 'CardDescription'
+));
+CardDescription.displayName = "CardDescription";
 
 const cardContentVariants = cva(styles.cardContent, {
   variants: {
@@ -79,13 +81,13 @@ const cardContentVariants = cva(styles.cardContent, {
     },
   },
   defaultVariants: {
-    variant: 'default',
-    size: 'default',
+    variant: "default",
+    size: "default",
   },
-})
+});
 
 type CardContentProps = React.HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof cardContentVariants>
+  VariantProps<typeof cardContentVariants>;
 
 const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
   ({ className, variant, size, ...props }, ref) => (
@@ -94,16 +96,23 @@ const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
       className={clsx(cardContentVariants({ variant, size }), className)}
       {...props}
     />
-  ),
-)
-CardContent.displayName = 'CardContent'
+  )
+);
+CardContent.displayName = "CardContent";
 
 const CardFooter = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div ref={ref} className={clsx(styles.cardFooter, className)} {...props} />
-))
-CardFooter.displayName = 'CardFooter'
+));
+CardFooter.displayName = "CardFooter";
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardDescription,
+  CardContent,
+};

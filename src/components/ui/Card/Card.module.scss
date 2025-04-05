@@ -13,6 +13,10 @@
     &Modal {
         background-color: $muted;
     }
+
+    &InvestGreen {
+        background-color: rgba($invest-green, 0.05);
+    }
 }
 
 .cardHeader {
@@ -74,7 +78,8 @@
         @include text-size(text-sm);
     }
 
-    &FilterButton {
-        @include spacing(padding, 1);
+    &Transaction {
+        @include spacing(padding, 0, 1);
+        @include text-size(text-sm);
     }
 }
