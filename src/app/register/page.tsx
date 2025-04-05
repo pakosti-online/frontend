@@ -3,7 +3,7 @@
 import React from "react";
 import clsx from "clsx";
 import { useScreenSize } from "@/common/contexts/ScreenSizeContext";
-import Register from "@/components/layout/Register/Register";
+import Register from "@/components/layout/Auth/Register/Register";
 import styles from "./register.module.scss";
 
 const RegisterPage = () => {
