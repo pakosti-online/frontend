@@ -9,8 +9,10 @@ import {
 } from "@/components/ui/Accordion/Accordion";
 import { getCategoriesList } from "@/common/configs/categoriesList";
 import { getTransactionsList } from "@/common/configs/transactions";
-import Transaction from "../Transaction/Transaction";
-import TransactionDialog from "../TransactionDialog/TransactionDialog";
+import Transaction from "../../Transaction/Transaction";
+import TransactionDialog from "../../TransactionDialog/TransactionDialog";
+import AddTransactionDialog from "../AddTransactionDialog/AddTransactionDialog";
+import AddTransactionDialogTrigger from "../AddTransactionDialog/AddTransactionDialogTrigger/AddTransactionDialogTrigger";
 
 interface CategoryAccordionProps {
   className?: string;
@@ -20,6 +22,16 @@ const CategoryAccordion: React.FC<CategoryAccordionProps> = ({ className }) => {
   const categoriesList = getCategoriesList();
   const transactionList = getTransactionsList();
 
+  const calculateFullCategorySpending = (category: string) => {
+    let spending = 0;
+
+    transactionList[category].map((transaction) => {
+      spending += transaction.price;
+    });
+
+    return spending;
+  };
+
   return (
     <Accordion
       type="single"
@@ -27,7 +39,14 @@ const CategoryAccordion: React.FC<CategoryAccordionProps> = ({ className }) => {
       className={clsx(styles.categoryAccordion, className)}
     >
       <div className={styles.accordionContainer}>
-        <h1 className={styles.categoryTitle}>Категории</h1>
+        <div className={styles.accordionTitleBlock}>
+          <h1 className={styles.sectionTitle}>Категории</h1>
+          <div className={styles.addTransactionBlock}>
+            <AddTransactionDialog>
+              <AddTransactionDialogTrigger />
+            </AddTransactionDialog>
+          </div>
+        </div>
         <div className={styles.categoriesList}>
           {categoriesList.map((category, index) => (
             <AccordionItem
@@ -36,7 +55,8 @@ const CategoryAccordion: React.FC<CategoryAccordionProps> = ({ className }) => {
               className={styles.categoryItem}
             >
               <AccordionTrigger className={styles.categoryItemTrigger}>
-                {category}
+                {category}&nbsp;(общая сумма расходов:&nbsp;
+                {calculateFullCategorySpending(category)}&nbsp;руб.)
               </AccordionTrigger>
               <AccordionContent className={styles.categoryItemContent}>
                 <div className={styles.transactionList}>

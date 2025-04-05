@@ -10,7 +10,13 @@
 
     .accordionContainer {
         width: 50%;
+        @include spacing(margin-top, 5);
         @include spacing(padding, 0, 5);
+
+        .accordionTitleBlock {
+            display: flex;
+            justify-content: space-between;
+        }
 
         .categoryTitle {
             color: black;
