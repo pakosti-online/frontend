@@ -5,8 +5,35 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     position: relative;
     width: 100%;
     height: 100vh;
+    color: black;
+
+    .appPageMainTitle {
+        width: 100%;
+        color: black;
+        text-align: left;
+        @include spacing(margin, 8, 0, 6, 0);
+    }
+
+    .infoBlocks {
+        width: 100%;
+        @include spacing(padding, 5, 0);
+        gap: 5rem;
+        display: flex;
+        justify-content: space-between;
+
+        .infoBlock {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 50%;
+
+            .infoBlockModalTrigger {
+                width: 50%;
+            }
+        }
+    }
 }

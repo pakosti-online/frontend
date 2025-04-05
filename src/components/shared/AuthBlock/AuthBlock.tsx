@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./AuthBlock.module.scss";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 interface AuthBlockProps {
   blockName: string;
   fieldPlaceholder: string;
   fieldType: string;
   id: string;
-  name: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string;
+  register?: UseFormRegisterReturn;
+  error?: string;
 }
 
 const AuthBlock: React.FC<AuthBlockProps> = ({
@@ -16,13 +16,12 @@ const AuthBlock: React.FC<AuthBlockProps> = ({
   fieldPlaceholder,
   fieldType,
   id,
-  name,
-  onChange,
-  value,
+  register,
+  error,
 }) => {
   return (
     <div className={styles.authBlock}>
-      <label htmlFor={name} className={styles.authBlockLabel}>
+      <label htmlFor={id} className={styles.authBlockLabel}>
         {blockName}
       </label>
       <input
@@ -30,11 +29,10 @@ const AuthBlock: React.FC<AuthBlockProps> = ({
         placeholder={fieldPlaceholder}
         type={fieldType}
         id={id}
-        name={name}
         required
-        value={value}
-        onChange={onChange}
+        {...register}
       />
+      {error && <span className={styles.errorMessage}>{error}</span>}
     </div>
   );
 };

@@ -1,0 +1,66 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.header {
+    width: 100%;
+    box-shadow: 0 3px 4px rgba($invest-green, 0.3);
+    background: rgba($invest-green, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include spacing(padding, 5, 10);
+
+    .logo {
+        color: black;
+        @include text-size(text-2xl);
+    }
+
+    .userSection {
+        .userInfo {
+            display: flex;
+            gap: 1.5rem;
+
+            .userOptions {
+                @include text-size(text-lg);
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+
+                .userBalance {
+                    margin-top: 3px;
+                }
+
+                .userNotifications {
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50%;
+                    border: 1px solid rgba(0, 0, 0, 0.2);
+                    cursor: pointer;
+
+                    .notificationIcon {
+                        width: 25px;
+                        height: 25px;
+                    }
+                }
+            }
+
+            .userBlock {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                .userAvatar img {
+                    @include rounded(xl);
+                    display: flex;
+                }
+
+                .userName {
+                    @include text-size(text-lg);
+                }
+            }
+        }
+    }
+}
