@@ -9,10 +9,9 @@ import {
 } from "@/components/ui/Accordion/Accordion";
 import { getCategoriesList } from "@/common/configs/categoriesList";
 import { getTransactionsList } from "@/common/configs/transactions";
-import Transaction from "../../Transaction/Transaction";
-import TransactionDialog from "../../TransactionDialog/TransactionDialog";
-import AddTransactionDialog from "../AddTransactionDialog/AddTransactionDialog";
-import AddTransactionDialogTrigger from "../AddTransactionDialog/AddTransactionDialogTrigger/AddTransactionDialogTrigger";
+import Transaction from "../Transaction/Transaction";
+import TransactionDialog from "../TransactionDialog/TransactionDialog";
+import Chart from "@/components/ui/Chart/CategoryDonutChart";
 
 interface CategoryAccordionProps {
   className?: string;
@@ -39,14 +38,8 @@ const CategoryAccordion: React.FC<CategoryAccordionProps> = ({ className }) => {
       className={clsx(styles.categoryAccordion, className)}
     >
       <div className={styles.accordionContainer}>
-        <div className={styles.accordionTitleBlock}>
-          <h1 className={styles.sectionTitle}>Категории</h1>
-          <div className={styles.addTransactionBlock}>
-            <AddTransactionDialog>
-              <AddTransactionDialogTrigger />
-            </AddTransactionDialog>
-          </div>
-        </div>
+        <Chart />
+        <h1 className={styles.categoryTitle}>Категории</h1>
         <div className={styles.categoriesList}>
           {categoriesList.map((category, index) => (
             <AccordionItem
@@ -55,8 +48,7 @@ const CategoryAccordion: React.FC<CategoryAccordionProps> = ({ className }) => {
               className={styles.categoryItem}
             >
               <AccordionTrigger className={styles.categoryItemTrigger}>
-                {category}&nbsp;(общая сумма расходов:&nbsp;
-                {calculateFullCategorySpending(category)}&nbsp;руб.)
+                {category}
               </AccordionTrigger>
               <AccordionContent className={styles.categoryItemContent}>
                 <div className={styles.transactionList}>
