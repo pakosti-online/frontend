@@ -12,6 +12,10 @@ interface GroupedTransactions {
 export const groupTransactionsByCategory = (
   transactions: TransactionType[]
 ): GroupedTransactions => {
+  if (!transactions) {
+    return {};
+  }
+
   return transactions.reduce(
     (acc: GroupedTransactions, transaction: TransactionType) => {
       const { category, product_name, date_created, delta, ...rest } =

@@ -1,6 +1,30 @@
 @use "@/styles/mixins" as *;
 @use "@/styles/variables" as *;
 
+.triggerButton {
+    background: rgba($invest-green, 0.8) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include spacing(height, 12);
+    gap: 0.5rem;
+
+    .triggerButtonIcon {
+        width: 23px;
+        height: 23px;
+        stroke: white;
+        fill: white;
+    }
+
+    .triggerButtonText {
+        color: white;
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem;
+        // @include weight(bold);
+    }
+}
+
 .dialogContent {
     min-width: 450px;
     background: white !important;

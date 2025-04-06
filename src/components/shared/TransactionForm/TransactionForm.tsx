@@ -38,7 +38,7 @@ export const TransactionForm = ({ className }: TransactionFormProps) => {
             </span>
           </div>
           <div className={styles.dialogParamsBlock}>
-            <label htmlFor="delta">Сумма расхода</label>
+            <label htmlFor="delta">Цена</label>
             <Input
               id="delta"
               type="number"

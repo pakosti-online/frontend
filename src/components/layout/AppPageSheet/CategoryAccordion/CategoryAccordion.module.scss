@@ -5,26 +5,26 @@
     width: 100%;
     height: 100%;
     display: flex;
-    overflow: scroll;
+    overflow-y: scroll;
     flex-direction: column;
     align-items: center;
+    overflow: auto;
 
     .accordionContainer {
         width: 50%;
         @include spacing(padding, 0, 5);
+        overflow-y: auto;
+        max-height: 100%;
+        flex-grow: 1;
 
         .categoryTitle {
             @include spacing(margin, 4, 0);
         }
 
-        .accordionTitleBlock {
-            display: flex;
-            justify-content: space-between;
-        }
-
         .categoryTitleBlock {
             display: flex;
             justify-content: space-between;
+            align-items: center;
 
             .categoryTitle {
                 @include spacing(margin, 5, 0);

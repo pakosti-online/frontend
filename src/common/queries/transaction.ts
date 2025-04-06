@@ -29,3 +29,13 @@ export async function getUserTransactions() {
   });
   return await response.data;
 }
+
+// Получение рекомендаций юзера
+export async function getUserRecommendations() {
+  const response = await axios.get(`${BASE_URL}/transactions/recommendations`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
+  });
+  return await response.data;
+}

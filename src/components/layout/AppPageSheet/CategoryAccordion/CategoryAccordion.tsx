@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import {
   Accordion,
@@ -17,6 +17,7 @@ import AddTransactionDialog from "../AddTransactionDialog/AddTransactionDialog";
 import styles from "./CategoryAccordion.module.scss";
 import { groupTransactionsByCategory } from "@/common/lib/group";
 import { TransactionType } from "@/common/types/api";
+import { updateAccessToken } from "@/common/queries/auth";
 
 interface CategoryAccordionProps {
   className?: string;
@@ -32,9 +33,17 @@ const CategoryAccordion: React.FC<CategoryAccordionProps> = ({ className }) => {
     queryFn: getUserTransactions,
   });
 
+  useEffect(() => {
+    async function handleUpdateAccessToken() {
+      if (error?.message === "Request failed with status code 401") {
+        await updateAccessToken();
+      }
+    }
+    handleUpdateAccessToken();
+  }, [error]);
+
   if (isLoading)
     return <div className={styles.accordionLoading}>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
 
   const groupedTransactions = groupTransactionsByCategory(transactionList);
 

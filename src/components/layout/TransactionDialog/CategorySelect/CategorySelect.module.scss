@@ -1,7 +1,0 @@
-@use "@/styles/mixins" as *;
-@use "@/styles/variables" as *;
-
-.selectTrigger {
-    width: 100%;
-    @include spacing(margin, 3, 0);
-}

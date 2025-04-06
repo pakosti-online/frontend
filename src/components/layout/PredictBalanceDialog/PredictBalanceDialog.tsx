@@ -31,7 +31,7 @@ const TransactionDialog: React.FC<TransactionDialogProps> = ({
       <DialogContent className={styles.dialogContent}>
         <DialogHeader>
           <DialogTitle className={styles.dialogTitle}>
-            Описание транзакции
+            На сколько дней вперед предсказать баланс?
           </DialogTitle>
         </DialogHeader>
         <div className={styles.dialogContentWrapper}>

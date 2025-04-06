@@ -9,7 +9,7 @@ const AppPage = () => {
       <Header />
       <div className={styles.infoBlocksContainer}>
         <h1 className={styles.appPageMainTitle}>
-          Приложение по прогнозированию расходов
+          Интеллектуальный финансовый помощник
         </h1>
         <div className={styles.infoBlocks}>
           <div className={styles.infoBlock}>
@@ -17,6 +17,7 @@ const AppPage = () => {
               triggerClassName={styles.infoBlockModalTrigger}
               contentClassName={styles.infoBlockModal}
               blockName="Транзакции"
+              type="Транзакции"
             />
           </div>
           <div className={styles.infoBlock}>
@@ -24,6 +25,7 @@ const AppPage = () => {
               triggerClassName={styles.infoBlockModalTrigger}
               contentClassName={styles.infoBlockModal}
               blockName="Рекомендации"
+              type="Рекомендации"
             />
           </div>
         </div>

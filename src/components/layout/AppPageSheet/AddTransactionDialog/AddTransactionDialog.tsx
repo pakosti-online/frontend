@@ -15,8 +15,8 @@ const AddTransactionDialog = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button className={styles.triggerButton}>
-          <IoAddSharp className={styles.icon} />
-          <span>Добавить транзакцию</span>
+          <IoAddSharp className={styles.triggerButtonIcon} />
+          <span className={styles.triggerButtonText}>Добавить транзакцию</span>
         </Button>
       </DialogTrigger>
       <DialogContent className={styles.dialogContent}>

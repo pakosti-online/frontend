@@ -8,10 +8,12 @@ import {
 } from "@/components/ui/Sheet/Sheet";
 import { IoMdClose } from "react-icons/io";
 import MainBlockCard from "../../shared/MainBlockCard/MainBlockCard";
-import CategoryAccordion from "./CategoryAccordion/CategoryAccordion";
 import styles from "./AppPageSheet.module.scss";
+import AppPageSheetTransactions from "./AppPageSheetTransactions/AppPageSheetTransactions";
+import AppPageSheetRecommendations from "./AppPageSheetRecommendations/AppPageSheetRecommendations";
 
 interface AppPageSheetProps {
+  type: "Транзакции" | "Рекомендации";
   blockName: string;
   triggerClassName?: string;
   contentClassName?: string;
@@ -21,6 +23,7 @@ const AppPageSheet: React.FC<AppPageSheetProps> = ({
   blockName,
   triggerClassName,
   contentClassName,
+  type,
 }) => {
   return (
     <Sheet>
@@ -36,9 +39,8 @@ const AppPageSheet: React.FC<AppPageSheetProps> = ({
             <IoMdClose />
           </SheetClose>
         </div>
-        <div className={styles.categories}>
-          <CategoryAccordion />
-        </div>
+        {type === "Транзакции" && <AppPageSheetTransactions />}
+        {type === "Рекомендации" && <AppPageSheetRecommendations />}
       </SheetContent>
     </Sheet>
   );

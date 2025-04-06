@@ -1,0 +1,134 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.cardColor {
+    &Cyan {
+        background-color: #00ffff;
+    }
+
+    &Red {
+        background-color: #ff0000;
+    }
+
+    &DarkGreen {
+        background-color: #006400;
+    }
+
+    &Aqua {
+        background-color: #00ffff;
+    }
+
+    &Lightblue {
+        background-color: #add8e6;
+    }
+
+    &Purple {
+        background-color: #800080;
+    }
+
+    &Gold {
+        background-color: #ffd700;
+    }
+
+    &Orange {
+        background-color: #ffa500;
+    }
+
+    &Pink {
+        background-color: #ffc0cb;
+    }
+
+    &DarkBlue {
+        background-color: #00008b;
+    }
+
+    &Lime {
+        background-color: #00ff00;
+    }
+
+    &Magenta {
+        background-color: #ff00ff;
+    }
+
+    &Teal {
+        background-color: #008080;
+    }
+
+    &Brown {
+        background-color: #a52a2a;
+    }
+
+    &Gray {
+        background-color: #808080;
+    }
+
+    &LightGray {
+        background-color: #d3d3d3;
+    }
+
+    &DarkRed {
+        background-color: #8b0000;
+    }
+
+    &Olive {
+        background-color: #808000;
+    }
+
+    &Navy {
+        background-color: #000080;
+    }
+}
+
+.baseContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    .recommendationBlock {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .categoryTitle {
+            width: 100%;
+            text-align: left;
+            @include spacing(margin, 4, 0);
+        }
+
+        .recommendations {
+            @include spacing(margin-top, 5);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1rem;
+
+            .recommendationCard {
+                width: auto;
+                height: 200px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .recommendationCardContent {
+                    @include text-size(text-xl);
+                    @include spacing(padding, 7, 5);
+                    @include weight(bold);
+                    color: white !important;
+                }
+            }
+        }
+
+        .balancePredictionButton {
+            width: 30%;
+            @include spacing(margin-top, 10);
+            @include spacing(padding, 5);
+            background: rgba($invest-green, 0.6);
+            @include spacing(height, 15);
+
+            .balancePredictionButtonText {
+                @include text-size(text-lg);
+                color: black !important;
+            }
+        }
+    }
+}

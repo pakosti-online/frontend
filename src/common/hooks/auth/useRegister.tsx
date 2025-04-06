@@ -18,26 +18,13 @@ export const useRegister = () => {
       onSuccess: () => {
         router.push("/login");
       },
-      onError: (error: any) => {
-        if (error.response?.data?.message) {
-          form.setError("root", {
-            type: "manual",
-            message: error.response.data.message,
-          });
-        } else {
-          form.setError("root", {
-            type: "manual",
-            message: "Произошла ошибка при регистрации",
-          });
-        }
-      },
+      onError: () => {},
     });
   };
 
   return {
     form,
     onSubmit,
-    isLoading: mutation.isLoading,
     error: mutation.error,
   };
 };

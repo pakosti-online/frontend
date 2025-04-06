@@ -11,7 +11,7 @@ import styles from "./Register.module.scss";
 import { Form } from "@/components/ui/Form/Form";
 
 const Register = () => {
-  const { form, onSubmit, isLoading } = useRegister();
+  const { form, onSubmit } = useRegister();
   const {
     register,
     formState: { errors },
@@ -88,9 +88,8 @@ const Register = () => {
               size="default"
               variant="investGreen"
               className={styles.submitButton}
-              disabled={isLoading}
             >
-              {isLoading ? "Регистрация..." : "Зарегистрироваться"}
+              Зарегистрироваться
             </Button>
           </form>
         </Form>
