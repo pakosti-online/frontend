@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { IoIosNotifications } from "react-icons/io";
+//import { IoIosNotifications } from "react-icons/io";
 import styles from "./Header.module.scss";
+import NotificationDropdown  from "@/components/shared/NotificationDropdown/NotificationDropdown";
 
 interface HeaderProps {
   balance: number;
@@ -17,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ balance, userName }) => {
           <div className={styles.userOptions}>
             <span className={styles.userBalance}>Баланс: {balance} руб.</span>
             <span className={styles.userNotifications}>
-              <IoIosNotifications className={styles.notificationIcon} />
+            <NotificationDropdown />
             </span>
           </div>
           <div className={styles.userBlock}>
