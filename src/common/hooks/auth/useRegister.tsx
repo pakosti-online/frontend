@@ -1,68 +1,43 @@
-import { createUser } from "@/common/queries/createUsers";
-import { RegisterFormData, registerSchema } from "@/common/schemas/register";
+// src/common/hooks/auth/useRegister.ts
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { SubmitHandler, useForm } from "react-hook-form";
-import {
-  UserCreateResponse,
-  ApiError,
-  RegisterFieldsData,
-} from "@/common/types/api";
+import { registerSchema, RegisterFormData } from "@/common/schemas/auth";
+import { useRegisterMutation } from "./useRegisterMutation";
+import { useRouter } from "next/navigation";
 
 export const useRegister = () => {
-  type UserSubmissionData = Omit<RegisterFieldsData, "confirmPassword">;
-
-  const form = useForm<RegisterFieldsData>({
+  const router = useRouter();
+  const form = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
-    defaultValues: {
-      surname: "",
-      name: "",
-      fatherhood: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
   });
 
-  const mutation = useMutation<
-    UserCreateResponse,
-    ApiError,
-    UserSubmissionData
-  >({
-    mutationFn: createUser,
-    onSuccess: (data: UserCreateResponse) => {
-      console.log("User created:", data);
-    },
-    onError: (error: ApiError) => {
-      console.error(error);
-    },
-  });
+  const mutation = useRegisterMutation();
 
-  const onSubmit: SubmitHandler<RegisterFormData> = async (
-    data: RegisterFormData
-  ) => {
-    console.log("Данные перед отправкой:", data);
-
-    try {
-      const isValid = await form.trigger();
-      if (!isValid) {
-        console.log("Ошибки валидации:", form.formState.errors);
-        return;
-      }
-
-      const { confirmPassword, ...userData } = data;
-      await mutation.mutateAsync(userData);
-    } catch (error) {
-      console.error("Ошибка при отправке:", error);
-    }
+  const onSubmit = (data: RegisterFormData) => {
+    mutation.mutate(data, {
+      onSuccess: () => {
+        router.push("/login");
+      },
+      onError: (error: any) => {
+        if (error.response?.data?.message) {
+          form.setError("root", {
+            type: "manual",
+            message: error.response.data.message,
+          });
+        } else {
+          form.setError("root", {
+            type: "manual",
+            message: "Произошла ошибка при регистрации",
+          });
+        }
+      },
+    });
   };
 
   return {
     form,
     onSubmit,
-    isLoading: mutation.isPending,
-    isError: mutation.isError,
+    isLoading: mutation.isLoading,
     error: mutation.error,
-    isSuccess: mutation.isSuccess,
   };
 };

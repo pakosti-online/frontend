@@ -32,29 +32,32 @@ const Register = () => {
             onSubmit={form.handleSubmit(onSubmit)}
             className={styles.registerForm}
           >
+            {errors.root && (
+              <p className={styles.errorMessage}>{errors.root.message}</p>
+            )}
             <AuthBlock
               blockName="Фамилия"
               fieldPlaceholder="Введите Вашу фамилию..."
               fieldType="text"
-              id="surname"
-              {...register("surname")}
-              error={errors.surname?.message}
+              id="last_name"
+              {...register("last_name")}
+              error={errors.last_name?.message}
             />
             <AuthBlock
               blockName="Имя"
               fieldPlaceholder="Введите Ваше имя.."
               fieldType="text"
-              id="name"
-              {...register("name")}
-              error={errors.name?.message}
+              id="first_name"
+              {...register("first_name")}
+              error={errors.first_name?.message}
             />
             <AuthBlock
               blockName="Отчество"
               fieldPlaceholder="Введите Ваше отчество..."
               fieldType="text"
-              id="fatherhood"
-              {...register("fatherhood")}
-              error={errors.fatherhood?.message}
+              id="patronymic"
+              {...register("patronymic")}
+              error={errors.patronymic?.message}
             />
             <AuthBlock
               blockName="Email"
@@ -85,10 +88,9 @@ const Register = () => {
               size="default"
               variant="investGreen"
               className={styles.submitButton}
+              disabled={isLoading}
             >
-              {form.formState.isSubmitting || isLoading
-                ? "Регистрация..."
-                : "Зарегистрироваться"}
+              {isLoading ? "Регистрация..." : "Зарегистрироваться"}
             </Button>
           </form>
         </Form>

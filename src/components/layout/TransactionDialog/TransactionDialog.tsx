@@ -39,21 +39,21 @@ const TransactionDialog: React.FC<TransactionDialogProps> = ({
         <div className={styles.dialogContentWrapper}>
           <div className={styles.dialogParamsContainer}>
             <div className={styles.dialogParamBlock}>
-              <span className={styles.dialogParamBlockTitle}>Название</span>
+              <h3 className={styles.dialogParamBlockTitle}>Название</h3>
               <span className={styles.dialogParamBlockDescription}>
                 {title}
               </span>
             </div>
             <div className={styles.dialogParamBlock}>
-              <span className={styles.dialogParamBlockTitle}>
+              <h3 className={styles.dialogParamBlockTitle}>
                 Дата и время создания
-              </span>
+              </h3>
               <span className={styles.dialogParamBlockDescription}>
                 {datetime}
               </span>
             </div>
             <div className={styles.dialogParamBlock}>
-              <span className={styles.dialogParamBlockTitle}>Расход</span>
+              <h3 className={styles.dialogParamBlockTitle}>Расход</h3>
               <span className={styles.dialogParamBlockDescription}>
                 {amount}&nbsp;руб.
               </span>

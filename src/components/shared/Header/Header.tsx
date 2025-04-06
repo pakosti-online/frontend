@@ -1,14 +1,16 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { IoIosNotifications } from "react-icons/io";
 import styles from "./Header.module.scss";
 
-interface HeaderProps {
-  balance: number;
-  userName: string;
-}
+const Header = () => {
+  const balance = localStorage.getItem("balance") || 0;
+  const userFirstName = localStorage.getItem("first_name");
+  const userLastName = localStorage.getItem("last_name");
+  const userName = `${userFirstName} ${userLastName}`;
 
-const Header: React.FC<HeaderProps> = ({ balance, userName }) => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>PakostiBank</div>

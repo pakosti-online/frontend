@@ -28,10 +28,9 @@
             .dialogParamBlock {
                 display: flex;
                 flex-direction: column;
-                @include text-size(text-);
 
-                .dialogParamBlockTitle {
-                    @include weight(bold);
+                span {
+                    @include text-size(text-base);
                 }
             }
         }

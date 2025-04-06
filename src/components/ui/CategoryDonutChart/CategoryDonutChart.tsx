@@ -3,14 +3,9 @@
 import * as React from "react";
 import { PieChart, Pie, Tooltip, Label } from "recharts";
 import styles from "./CategoryDonutChart.module.scss";
-import { getCategoriesList } from "@/common/configs/categoriesList";
-import { getTransactionsList } from "@/common/configs/transactions";
-
-interface Transaction {
-  name: string;
-  price: number;
-  datetime: string;
-}
+import { getUserTransactions } from "@/common/queries/transaction";
+import { useQuery } from "@tanstack/react-query";
+import { groupTransactionsByCategory } from "@/common/lib/group";
 
 interface CategoryTotal {
   category: string;
@@ -18,7 +13,21 @@ interface CategoryTotal {
   fill: string;
 }
 
-const CustomTooltip = ({ active, payload }: any) => {
+interface TooltipPayloadItem {
+  payload: {
+    category: string;
+    total: number;
+    fill: string;
+  };
+}
+
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: TooltipPayloadItem[];
+  label?: string;
+}
+
+const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
@@ -41,22 +50,33 @@ const CustomTooltip = ({ active, payload }: any) => {
 };
 
 const CategoryDonutChart = () => {
-  const categories = getCategoriesList();
-  const transactions = getTransactionsList();
+  const { data: transactionList } = useQuery({
+    queryKey: ["transactions"],
+    queryFn: getUserTransactions,
+  });
+
+  const groupedTransactions = groupTransactionsByCategory(transactionList);
 
   const categoryTotals = React.useMemo((): CategoryTotal[] => {
-    return categories.map((category: string) => {
-      const total = transactions[category]?.reduce(
-        (acc: number, item: Transaction) => acc + item.price,
-        0
-      );
-      return {
-        category,
-        total: total || 0,
-        fill: `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`,
-      };
-    });
-  }, [categories, transactions]);
+    if (!groupedTransactions) return [];
+
+    return Object.entries(groupedTransactions).map(
+      ([category, transactions]) => {
+        const total = Math.abs(
+          transactions
+            .map((t) => t.delta)
+            .filter((delta) => delta < 0)
+            .reduce((a, b) => a + b, 0)
+        );
+
+        return {
+          category,
+          total,
+          fill: `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`,
+        };
+      }
+    );
+  }, [groupedTransactions]);
 
   const totalAmount = React.useMemo(() => {
     return categoryTotals.reduce((acc, curr) => acc + curr.total, 0);

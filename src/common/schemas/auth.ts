@@ -1,16 +1,21 @@
 import { z } from "zod";
 
+export const loginSchema = z.object({
+  username: z.string().email("Некорректный email").min(1, "Обязательное поле"),
+  password: z.string().min(6, "Пароль должен содержать минимум 6 символов"),
+});
+
 export const registerSchema = z
   .object({
-    surname: z
+    last_name: z
       .string()
       .min(3, { message: "Фамилия должна содержать минимум 3 символа" })
       .max(30, { message: "Фамилия не должна превышать 30 символов" }),
-    name: z
+    first_name: z
       .string()
       .min(3, { message: "Имя должно содержать минимум 3 символа" })
       .max(30, { message: "Имя не должно превышать 30 символов" }),
-    fatherhood: z
+    patronymic: z
       .string()
       .min(3, { message: "Отчество должно содержать минимум 3 символа" })
       .max(30, { message: "Отчество не должно превышать 30 символов" })
@@ -31,3 +36,4 @@ export const registerSchema = z
   });
 
 export type RegisterFormData = z.infer<typeof registerSchema>;
+export type LoginFormData = z.infer<typeof loginSchema>;

@@ -1,40 +1,33 @@
 import React from "react";
 import styles from "./AuthBlock.module.scss";
-import { UseFormRegisterReturn } from "react-hook-form";
 
-interface AuthBlockProps {
+interface AuthBlockProps extends React.InputHTMLAttributes<HTMLInputElement> {
   blockName: string;
   fieldPlaceholder: string;
   fieldType: string;
-  id: string;
-  register?: UseFormRegisterReturn;
   error?: string;
 }
 
-const AuthBlock: React.FC<AuthBlockProps> = ({
-  blockName,
-  fieldPlaceholder,
-  fieldType,
-  id,
-  register,
-  error,
-}) => {
-  return (
-    <div className={styles.authBlock}>
-      <label htmlFor={id} className={styles.authBlockLabel}>
-        {blockName}
-      </label>
-      <input
-        className={styles.authBlockField}
-        placeholder={fieldPlaceholder}
-        type={fieldType}
-        id={id}
-        required
-        {...register}
-      />
-      {error && <span className={styles.errorMessage}>{error}</span>}
-    </div>
-  );
-};
+const AuthBlock = React.forwardRef<HTMLInputElement, AuthBlockProps>(
+  ({ blockName, fieldPlaceholder, fieldType, error, ...props }, ref) => {
+    return (
+      <div className={styles.authBlock}>
+        <label htmlFor={props.id} className={styles.blockName}>
+          {blockName}
+        </label>
+        <input
+          ref={ref}
+          className={styles.authBlockField}
+          placeholder={fieldPlaceholder}
+          type={fieldType}
+          {...props}
+        />
+        {error && <p className={styles.errorMessage}>{error}</p>}
+      </div>
+    );
+  }
+);
+
+AuthBlock.displayName = "AuthBlock";
 
 export default AuthBlock;

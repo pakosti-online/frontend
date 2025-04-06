@@ -1,2 +1,30 @@
 @use "@/styles/mixins" as *;
 @use "@/styles/variables" as *;
+
+.dialogContent {
+    min-width: 450px;
+    background: white !important;
+    box-shadow: 0 4px 6px rgba($invest-green, 0.6);
+
+    .dialogTitle {
+        @include text-size(text-xl);
+    }
+
+    .dialogContentWrapper {
+        @include spacing(margin, 4, 0);
+
+        .dialogParamsContainer {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 1rem;
+
+            .dialogParamBlock {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    }
+}

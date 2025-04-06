@@ -13,14 +13,23 @@
         width: 50%;
         @include spacing(padding, 0, 5);
 
+        .categoryTitle {
+            @include spacing(margin, 4, 0);
+        }
+
         .accordionTitleBlock {
             display: flex;
             justify-content: space-between;
         }
 
-        .categoryTitle {
-            @include spacing(margin, 5, 0);
-            color: black;
+        .categoryTitleBlock {
+            display: flex;
+            justify-content: space-between;
+
+            .categoryTitle {
+                @include spacing(margin, 5, 0);
+                color: black;
+            }
         }
 
         .categoriesList {

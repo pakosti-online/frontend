@@ -1,29 +1,9 @@
-export interface UserCreateResponse {
+export type TransactionType = {
   id: number;
-  first_name: string;
-  last_name: string;
-  patronymic: string;
-  email: string;
-}
-
-export type RegisterFieldsData = {
-  surname: string;
-  name: string;
-  fatherhood: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+  product_name: string;
+  date_created: string;
+  category: string;
+  balance: string;
+  delta: number;
+  user_id: number;
 };
-
-export interface ApiError {
-  message: string;
-  response?: {
-    data?: {
-      message?: string;
-      errors?: Array<{
-        field: keyof RegisterFieldsData;
-        message: string;
-      }>;
-    };
-  };
-}
